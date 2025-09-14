@@ -1,0 +1,903 @@
+/* Compact Audio Player CSS */
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .start-date {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+        
+        .artist {
+            text-align:left;
+            color: rgb(61, 13, 184);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .adi, .artist {
+            font-size: xx-small;
+            font-style: italic;
+        }
+
+        .compact-player {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .player-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-weight: 600;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .thumbnail {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .track-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .track-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .track-details {
+            font-size: 12px;
+            color: #888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .download-btn {
+            color: #6e8efb;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            color: #a777e3;
+            background-color: #f0f0f0;
+        }
+        
+        .progress-container {
+            padding: 0 15px;
+            margin: 15px 0 8px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .progress {
+            height: inherit;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #6e8efb, #a777e3);
+            transition: width 0.1s ease;
+            position: relative;
+        }
+        
+        .progress.pulse-active {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .progress-knob {
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: #a777e3;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(167, 119, 227, 0.6);
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.2s ease;
+        }
+        
+        .progress-knob:hover {
+            transform: translateY(-50%) scale(1.2);
+            background: #8e5fd8;
+        }
+        
+        .time-display {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 11px;
+            color: 888;
+            padding: 0 2px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .time-controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 15px 5px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .time-btn {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-size: 11px;
+            color: #6e8efb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .time-btn:hover {
+            background: #6e8efb;
+            color: white;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .controls-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .playback-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: #6e8efb;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .control-btn:hover {
+            color: #a777e3;
+            background: #f0f0f0;
+        }
+        
+        .play-pause-btn {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(90deg, #6e8efb, #a777e3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(110, 142, 251, 0.3);
+            color: white;
+        }
+        
+        .play-pause-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #5d7cdb, #8e5fd8);
+        }
+        
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .volume-slider {
+            width: 70px;
+            height: 3px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 8px;
+            height: 8px;
+            background: #6e8efb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .playback-speed {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .speed-select {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
+            background: white;
+            color: #6e8efb;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .speed-select:hover {
+            border-color: #6e8efb;
+        }
+        
+        .playlist-btn, .calendar-btn {
+            color: #6e8efb;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .playlist-btn:hover, .calendar-btn:hover {
+            color: #a777e3;
+            background-color: #f0f0f0;
+        }
+        
+        .music-list, .calendar-view {
+            position: absolute;
+            background: #fff;
+            width: 100%;
+            bottom: -55%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-out;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        
+        .music-list.show, .calendar-view.show {
+            bottom: 0;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .music-list .header, .calendar-view .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+        
+        .calendar-view .header span {
+            color: #8e5fd8;
+            font-weight: 600;
+        }
+        
+        .music-list ul {
+            margin: 5px 0;
+        }
+        
+        .music-list ul li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .music-list ul li:hover {
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        .music-list ul li.playing {
+            color: #6e8efb;
+            font-weight: 500;
+        }
+        
+        .music-list .header #close, .calendar-view .header #close-calendar {
+            color: #888;
+            transition: all 0.2s ease;
+        }
+        
+        .music-list .header #close:hover, .calendar-view .header #close-calendar:hover {
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+        
+        .playlist-search {
+            margin: 8px 0;
+            position: relative;
+        }
+        
+        .playlist-search input {
+            width: 100%;
+            padding: 8px 12px 8px 32px;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 12px;
+            outline: none;
+        }
+        
+        .playlist-search i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 16px;
+        }
+        
+        .audio-duration {
+            font-size: 11px;
+            color: #999;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .music-list ul li.playing .audio-duration {
+            color: #6e8efb;
+        }
+        
+        .music-list::-webkit-scrollbar, .calendar-view::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .music-list::-webkit-scrollbar-track, .calendar-view::-webkit-scrollbar-track {
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .music-list::-webkit-scrollbar-thumb, .calendar-view::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border-radius: 10px;
+        }
+
+        .music-list::-webkit-scrollbar-thumb:hover, .calendar-view::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5d7cdb, #8e5fd8);
+        }
+        
+        .player-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 18px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            font-size: 13px;
+        }
+        
+        .player-notification.show {
+            opacity: 1;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 12px;
+            color: #6e8efb;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .loading.show {
+            display: block;
+            animation: fadeInOut 1.5s infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .error-message {
+            display: none;
+            text-align: center;
+            padding: 8px;
+            color: #e74c3c;
+            font-size: 13px;
+            background: #ffeeee;
+            border-radius: 5px;
+            margin: 8px;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .db-status {
+            text-align: center;
+            padding: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* Calendar Styles */
+        .calendar-view {
+            display: none;
+            padding: 12px;
+            max-height: 55vh;
+            overflow: hidden;
+        }
+        
+        .calendar-view.show {
+            display: block;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-top: 8px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 4px 2px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+        }
+        
+        .calendar-day.has-recording {
+            background: #f0f5ff;
+            border: 1px solid #6e8efb;
+            color: #6e8efb;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .calendar-day.has-recording::after {
+            content: "";
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 6px;
+            height: 6px;
+            background: #6e8efb;
+            border-radius: 50%;
+        }
+        
+        .calendar-day.has-recording:hover {
+            background: #6e8efb;
+            color: white;
+        }
+        
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            font-size: 9px;
+            color: #888;
+            padding: 3px;
+        }
+        
+        .calendar-month-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .calendar-month-year {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+        
+        .calendar-track-info {
+            margin-top: 8px;
+            padding: 6px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            font-size: 11px;
+            display: none;
+            max-height: 70px;
+            overflow-y: auto;
+        }
+        
+        .calendar-track-info.show {
+            display: block;
+        }
+        
+        .calendar-track-list {
+            margin-top: 10px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        
+        .calendar-track-item {
+            padding: 6px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .calendar-track-item:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .track-info-calendar {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .track-play-instruction {
+            font-size: 9px;
+            color: #6e8efb;
+            font-style: italic;
+            margin-top: 2px;
+        }
+        
+        .calendar-nav-btn {
+            cursor: pointer;
+            color: #6e8efb;
+            padding: 2px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .calendar-nav-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .calendar-nav-btn.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .calendar-nav-btn.disabled:hover {
+            background: transparent;
+        }
+        
+        /* Added better touch targets for mobile */
+        @media (max-width: 480px) {
+            .control-btn, .time-btn {
+                min-height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .progress-knob {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .compact-player {
+                border-radius: 14px;
+                max-width: 100%;
+            }
+            
+            .controls-container {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            
+            .time-btn {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+            
+            .volume-slider {
+                width: 60px;
+            }
+            
+            .speed-select {
+                padding: 3px 6px;
+                font-size: 10px;
+            }
+            
+            .tooltip .tooltiptext {
+                font-size: 10px;
+                width: 100px;
+                bottom: 110%;
+            }
+            
+            .calendar-grid {
+                gap: 1px;
+            }
+            
+            .calendar-day {
+                padding: 3px 1px;
+                font-size: 9px;
+                min-height: 22px;
+            }
+            
+            .calendar-view {
+                max-height: 50vh;
+                padding: 10px;
+            }
+            
+            .calendar-month-year {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .controls-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .playback-controls, .volume-controls, .playback-speed {
+                justify-content: center;
+                margin: 5px 0;
+            }
+            
+            .time-controls {
+                gap: 5px;
+            }
+            
+            .tooltip .tooltiptext {
+                font-size: 9px;
+                width: 90px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .start-date {
+                font-size: 0.8rem;
+            }
+            
+            .calendar-day {
+                padding: 2px 1px;
+                font-size: 8px;
+                min-height: 20px;
+            }
+            
+            .calendar-day-header {
+                font-size: 8px;
+            }
+            
+            .calendar-month-year {
+                font-size: 11px;
+            }
+            
+            .calendar-view {
+                max-height: 45vh;
+                padding: 8px;
+            }
+        }
+
+        .resume-prompt {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+        }
+        
+        .resume-prompt h3 {
+            margin-bottom: 15px;
+            color: #6e8efb;
+        }
+        
+        .resume-prompt p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .resume-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .resume-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .resume-yes {
+            background: #6e8efb;
+            color: white;
+        }
+        
+        .resume-no {
+            background: #f0f0f0;
+            color: #555;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+  
