@@ -1,0 +1,23 @@
+
+---
+
+## 🧹 `.gitignore` Suggestions
+
+Create a `.gitignore` file to keep your repo clean:
+
+```plaintext
+# Node modules (if used)
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# PHP server artifacts
+*.log
+*.tmp
+
+# IDE files
+.vscode/
+*.sublime-project
+*.sublime-workspace
