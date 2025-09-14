@@ -1,5 +1,85 @@
-<link rel="stylesheet" href="css/bg_player.css">
-<script type="module" src="js/ui.js"></script>
-<script type="module" src="js/api.js"></script>
-<script type="module" src="js/calendar.js"></script>
-<script type="module" src="js/player.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/bg_player.css" />
+  <title>Bhagavata Audio Player</title>
+</head>
+<body>
+
+  <!-- 🔔 Resume Prompt -->
+  <div class="overlay"></div>
+  <div class="resume-prompt">
+    <h3>Resume Playback?</h3>
+    <p>Would you like to continue from where you left off?</p>
+    <div class="resume-buttons">
+      <button class="resume-btn resume-yes">Yes</button>
+      <button class="resume-btn resume-no">No</button>
+    </div>
+  </div>
+
+  <!-- 🎧 Audio Player -->
+  <div class="compact-player">
+    <img class="thumbnail" src="assets/default.jpg" alt="Track Thumbnail" />
+    <div class="track-info">
+      <h4 class="track-name">Select a track</h4>
+      <p class="track-details">Artist info</p>
+    </div>
+    <audio id="mainAudio" preload="metadata"></audio>
+
+    <div class="controls-container">
+      <button id="playPauseBtn" class="control-btn">
+        <span id="playIcon" class="material-icons">play_arrow</span>
+      </button>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="time-controls">
+        <span id="currentTime">00:00</span> /
+        <span id="maxDuration">00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎵 Playlist -->
+  <div class="music-list show">
+    <div class="header">
+      <h5>Playlist</h5>
+      <span id="close" class="material-icons">close</span>
+    </div>
+    <div class="playlist-search">
+      <i class="material-icons">search</i>
+      <input type="text" placeholder="Search tracks..." />
+    </div>
+    <ul></ul>
+  </div>
+
+  <!-- 📅 Calendar View -->
+  <div class="calendar-view show">
+    <div class="header">
+      <span>Calendar</span>
+      <span id="close-calendar" class="material-icons">close</span>
+    </div>
+    <div class="calendar-month-nav">
+      <button class="calendar-nav-btn prev-month">◀</button>
+      <div class="calendar-month-year">September 2025</div>
+      <button class="calendar-nav-btn next-month">▶</button>
+    </div>
+    <div class="calendar-grid"></div>
+    <div class="calendar-track-info">
+      <div class="calendar-track-list"></div>
+    </div>
+  </div>
+
+  <!-- 🔔 Notifications -->
+  <div class="player-notification"></div>
+
+  <!-- ⏳ Loading & Errors -->
+  <div class="loading">Loading...</div>
+  <div class="error-message">Something went wrong.</div>
+
+  <!-- 🧠 Main Logic -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
